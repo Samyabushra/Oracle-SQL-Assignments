@@ -1,0 +1,56 @@
+SQL> 
+SQL> SELECT * FROM STUDENT;
+
+    ROLLNO NAME                                                      AGE        
+---------- -------------------------------------------------- ----------        
+EXAM                                                    MARKS G                 
+-------------------------------------------------- ---------- -                 
+         1 Rahul                                                      20        
+Math                                                       90 A                 
+                                                                                
+         2 Anita                                                      21        
+Science                                                    80 B                 
+                                                                                
+         3 Kiran                                                      20        
+English                                                    70 C                 
+                                                                                
+
+    ROLLNO NAME                                                      AGE        
+---------- -------------------------------------------------- ----------        
+EXAM                                                    MARKS G                 
+-------------------------------------------------- ---------- -                 
+         4 Pooja                                                      22        
+Math                                                       95 A                 
+                                                                                
+
+SQL> 
+SQL> SELECT * FROM STUDENT_DETAILS;
+
+    ROLLNO NAME                                                      AGE        
+---------- -------------------------------------------------- ----------        
+         1 Rahul                                                      20        
+         2 Anita                                                      21        
+         3 Kiran                                                      20        
+         4 Pooja                                                      22        
+
+SQL> 
+SQL> SELECT * FROM EXAM_RESULT;
+
+    ROLLNO EXAM                                                    MARKS        
+---------- -------------------------------------------------- ----------        
+         1 Math                                                       90        
+         2 Science                                                    80        
+         3 English                                                    70        
+         4 Math                                                       95        
+
+SQL> SELECT * FROM GRADE_MASTER;
+
+G  MIN_MARKS  MAX_MARKS                                                         
+- ---------- ----------                                                         
+A         90        100                                                         
+B         80         89                                                         
+C         70         79                                                         
+D         60         69                                                         
+F          0         59                                                         
+
+SQL> SPOOL OFF
