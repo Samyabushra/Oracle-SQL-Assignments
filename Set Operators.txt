@@ -1,0 +1,65 @@
+SQL> SELECT JOB,
+  2         SUM(CASE WHEN DEPTNO = 10 THEN SAL ELSE 0 END) AS Dept10,
+  3         SUM(CASE WHEN DEPTNO = 20 THEN SAL ELSE 0 END) AS Dept20,
+  4         SUM(CASE WHEN DEPTNO = 30 THEN SAL ELSE 0 END) AS Dept30,
+  5         SUM(SAL) AS Total_Salary
+  6  FROM EMPLOYEE2
+  7  GROUP BY JOB;
+
+JOB                                DEPT10     DEPT20     DEPT30 TOTAL_SALARY    
+------------------------------ ---------- ---------- ---------- ------------    
+CLERK                                1300       1900        950         4150    
+SALESMAN                                0          0       5600         5600    
+MANAGER                              2450       2975       2850         8275    
+ANALYST                                 0       6000          0         6000    
+PRESIDENT                            5000          0          0         5000    
+
+SQL> SELECT TO_CHAR(DEPTNO) AS Category,
+  2         SUM(SAL) AS Total_Salary
+  3  FROM EMPLOYEE2
+  4  GROUP BY DEPTNO
+  5  
+SQL> UNION ALL
+
+SQL> SELECT JOB AS Category,
+  2         SUM(SAL)
+  3  FROM EMPLOYEE2
+  4  GROUP BY JOB
+  5  
+SQL> UNION ALL
+
+SQL> SELECT 'TOTAL' AS Category,
+  2         SUM(SAL)
+  3  FROM EMPLOYEE2;
+
+CATEG   SUM(SAL)                                                                
+----- ----------                                                                
+TOTAL      29025                                                                
+
+SQL> SELECT JOB, DEPTNO
+  2  FROM EMPLOYEE2
+  3  WHERE DEPTNO = 20
+  4  
+SQL> UNION ALL
+
+SQL> SELECT JOB, DEPTNO
+  2  FROM EMPLOYEE2
+  3  WHERE DEPTNO = 10
+  4  
+SQL> UNION ALL 
+SQL> SELECT JOB, DEPTNO
+  2  FROM EMPLOYEE2
+  3  WHERE DEPTNO = 30;
+
+JOB                                DEPTNO                                       
+------------------------------ ----------                                       
+SALESMAN                               30                                       
+SALESMAN                               30                                       
+SALESMAN                               30                                       
+MANAGER                                30                                       
+SALESMAN                               30                                       
+CLERK                                  30                                       
+
+6 rows selected.
+
+SQL> SPOOL OFF
