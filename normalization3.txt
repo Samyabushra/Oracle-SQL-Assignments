@@ -1,0 +1,43 @@
+SQL> SELECT * FROM EMPLOYEE_PROJECT;
+
+     EMPNO PROJECT_NO NO_OF_DAYS                                                
+---------- ---------- ----------                                                
+CUSTOMERNAME                                                                    
+--------------------------------------------------                              
+       101       1001         25                                                
+ABC Ltd                                                                         
+                                                                                
+       102       1002         30                                                
+XYZ Pvt Ltd                                                                     
+                                                                                
+       103       1001         20                                                
+ABC Ltd                                                                         
+                                                                                
+
+     EMPNO PROJECT_NO NO_OF_DAYS                                                
+---------- ---------- ----------                                                
+CUSTOMERNAME                                                                    
+--------------------------------------------------                              
+       104       1003         15                                                
+Global Tech                                                                     
+                                                                                
+
+SQL> 
+SQL> SELECT * FROM PROJECT;
+
+PROJECT_NO CUSTOMERNAME                                                         
+---------- --------------------------------------------------                   
+      1001 ABC Ltd                                                              
+      1002 XYZ Pvt Ltd                                                          
+      1003 Global Tech                                                          
+
+SQL> SELECT * FROM EMPLOYEE_PROJECT_NEW;
+
+     EMPNO PROJECT_NO NO_OF_DAYS                                                
+---------- ---------- ----------                                                
+       101       1001         25                                                
+       102       1002         30                                                
+       103       1001         20                                                
+       104       1003         15                                                
+
+SQL> SPOOL OFF
