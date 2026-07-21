@@ -1,0 +1,672 @@
+SQL> SELECT SYSDATE AS "Date"
+  2  FROM DUAL;
+
+Date                                                                            
+---------                                                                       
+21-JUL-26                                                                       
+
+SQL> SELECT EMPNO,
+  2         ENAME,
+  3         SAL,
+  4         ROUND(SAL * 1.155,0) AS "New Salary"
+  5  FROM EMPLOYEE2;
+
+     EMPNO ENAME                                                     SAL        
+---------- -------------------------------------------------- ----------        
+New Salary                                                                      
+----------                                                                      
+      7369 SMITH                                                     800        
+       924                                                                      
+                                                                                
+      7499 ALLEN                                                    1600        
+      1848                                                                      
+                                                                                
+      7521 WARD                                                     1250        
+      1444                                                                      
+                                                                                
+
+     EMPNO ENAME                                                     SAL        
+---------- -------------------------------------------------- ----------        
+New Salary                                                                      
+----------                                                                      
+      7566 JONES                                                    2975        
+      3436                                                                      
+                                                                                
+      7654 MARTIN                                                   1250        
+      1444                                                                      
+                                                                                
+      7698 BLAKE                                                    2850        
+      3292                                                                      
+                                                                                
+
+     EMPNO ENAME                                                     SAL        
+---------- -------------------------------------------------- ----------        
+New Salary                                                                      
+----------                                                                      
+      7782 CLARK                                                    2450        
+      2830                                                                      
+                                                                                
+      7788 SCOTT                                                    3000        
+      3465                                                                      
+                                                                                
+      7839 KING                                                     5000        
+      5775                                                                      
+                                                                                
+
+     EMPNO ENAME                                                     SAL        
+---------- -------------------------------------------------- ----------        
+New Salary                                                                      
+----------                                                                      
+      7844 TURNER                                                   1500        
+      1733                                                                      
+                                                                                
+      7876 ADAMS                                                    1100        
+      1271                                                                      
+                                                                                
+      7900 JAMES                                                     950        
+      1097                                                                      
+                                                                                
+
+     EMPNO ENAME                                                     SAL        
+---------- -------------------------------------------------- ----------        
+New Salary                                                                      
+----------                                                                      
+      7902 FORD                                                     3000        
+      3465                                                                      
+                                                                                
+      7934 MILLER                                                   1300        
+      1502                                                                      
+                                                                                
+
+14 rows selected.
+
+SQL> SELECT EMPNO,
+  2         ENAME,
+  3         SAL,
+  4         ROUND(SAL * 1.155,0) AS "New Salary",
+  5         ROUND((SAL * 1.155) - SAL,0) AS Increase
+  6  FROM EMPLOYEE2;
+
+     EMPNO ENAME                                                     SAL        
+---------- -------------------------------------------------- ----------        
+New Salary   INCREASE                                                           
+---------- ----------                                                           
+      7369 SMITH                                                     800        
+       924        124                                                           
+                                                                                
+      7499 ALLEN                                                    1600        
+      1848        248                                                           
+                                                                                
+      7521 WARD                                                     1250        
+      1444        194                                                           
+                                                                                
+
+     EMPNO ENAME                                                     SAL        
+---------- -------------------------------------------------- ----------        
+New Salary   INCREASE                                                           
+---------- ----------                                                           
+      7566 JONES                                                    2975        
+      3436        461                                                           
+                                                                                
+      7654 MARTIN                                                   1250        
+      1444        194                                                           
+                                                                                
+      7698 BLAKE                                                    2850        
+      3292        442                                                           
+                                                                                
+
+     EMPNO ENAME                                                     SAL        
+---------- -------------------------------------------------- ----------        
+New Salary   INCREASE                                                           
+---------- ----------                                                           
+      7782 CLARK                                                    2450        
+      2830        380                                                           
+                                                                                
+      7788 SCOTT                                                    3000        
+      3465        465                                                           
+                                                                                
+      7839 KING                                                     5000        
+      5775        775                                                           
+                                                                                
+
+     EMPNO ENAME                                                     SAL        
+---------- -------------------------------------------------- ----------        
+New Salary   INCREASE                                                           
+---------- ----------                                                           
+      7844 TURNER                                                   1500        
+      1733        233                                                           
+                                                                                
+      7876 ADAMS                                                    1100        
+      1271        171                                                           
+                                                                                
+      7900 JAMES                                                     950        
+      1097        147                                                           
+                                                                                
+
+     EMPNO ENAME                                                     SAL        
+---------- -------------------------------------------------- ----------        
+New Salary   INCREASE                                                           
+---------- ----------                                                           
+      7902 FORD                                                     3000        
+      3465        465                                                           
+                                                                                
+      7934 MILLER                                                   1300        
+      1502        202                                                           
+                                                                                
+
+14 rows selected.
+
+SQL> SELECT INITCAP(ENAME) AS Employee_Name,
+  2         LENGTH(ENAME) AS Length
+  3  FROM EMPLOYEE2
+  4  WHERE ENAME LIKE 'J%'
+  5     OR ENAME LIKE 'A%'
+  6     OR ENAME LIKE 'M%'
+  7  ORDER BY ENAME;
+
+EMPLOYEE_NAME                                          LENGTH                   
+-------------------------------------------------- ----------                   
+Adams                                                       5                   
+Allen                                                       5                   
+James                                                       5                   
+Jones                                                       5                   
+Martin                                                      6                   
+Miller                                                      6                   
+
+6 rows selected.
+
+SQL> SELECT *
+  2  FROM EMPLOYEE2
+  3  WHERE ENAME LIKE 'H%';
+
+no rows selected
+
+SQL> SELECT ENAME,
+  2         ROUND(MONTHS_BETWEEN(SYSDATE, HIREDATE),0) AS MONTHS_WORKED
+  3  FROM EMPLOYEE2
+  4  ORDER BY MONTHS_WORKED;
+
+ENAME                                              MONTHS_WORKED                
+-------------------------------------------------- -------------                
+ADAMS                                                        470                
+SCOTT                                                        471                
+MILLER                                                       534                
+FORD                                                         536                
+JAMES                                                        536                
+KING                                                         536                
+TURNER                                                       538                
+MARTIN                                                       538                
+CLARK                                                        541                
+BLAKE                                                        543                
+JONES                                                        544                
+
+ENAME                                              MONTHS_WORKED                
+-------------------------------------------------- -------------                
+WARD                                                         545                
+ALLEN                                                        545                
+SMITH                                                        547                
+
+14 rows selected.
+
+SQL> SELECT ENAME,
+  2         '$' || TO_CHAR(SAL * 3,'999,999,990.00') AS "Dream Salaries"
+  3  FROM EMPLOYEE2;
+
+ENAME                                              Dream Salaries               
+-------------------------------------------------- ----------------             
+SMITH                                              $       2,400.00             
+ALLEN                                              $       4,800.00             
+WARD                                               $       3,750.00             
+JONES                                              $       8,925.00             
+MARTIN                                             $       3,750.00             
+BLAKE                                              $       8,550.00             
+CLARK                                              $       7,350.00             
+SCOTT                                              $       9,000.00             
+KING                                               $      15,000.00             
+TURNER                                             $       4,500.00             
+ADAMS                                              $       3,300.00             
+
+ENAME                                              Dream Salaries               
+-------------------------------------------------- ----------------             
+JAMES                                              $       2,850.00             
+FORD                                               $       9,000.00             
+MILLER                                             $       3,900.00             
+
+14 rows selected.
+
+SQL> SELECT ENAME,
+  2         LPAD(SAL,15,'$') AS SALARY
+  3  FROM EMPLOYEE2;
+
+ENAME                                                                           
+--------------------------------------------------                              
+SALARY                                                                          
+------------------------------------------------------------                    
+SMITH                                                                           
+$$$$$$$$$$$$800                                                                 
+                                                                                
+ALLEN                                                                           
+$$$$$$$$$$$1600                                                                 
+                                                                                
+WARD                                                                            
+$$$$$$$$$$$1250                                                                 
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+SALARY                                                                          
+------------------------------------------------------------                    
+JONES                                                                           
+$$$$$$$$$$$2975                                                                 
+                                                                                
+MARTIN                                                                          
+$$$$$$$$$$$1250                                                                 
+                                                                                
+BLAKE                                                                           
+$$$$$$$$$$$2850                                                                 
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+SALARY                                                                          
+------------------------------------------------------------                    
+CLARK                                                                           
+$$$$$$$$$$$2450                                                                 
+                                                                                
+SCOTT                                                                           
+$$$$$$$$$$$3000                                                                 
+                                                                                
+KING                                                                            
+$$$$$$$$$$$5000                                                                 
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+SALARY                                                                          
+------------------------------------------------------------                    
+TURNER                                                                          
+$$$$$$$$$$$1500                                                                 
+                                                                                
+ADAMS                                                                           
+$$$$$$$$$$$1100                                                                 
+                                                                                
+JAMES                                                                           
+$$$$$$$$$$$$950                                                                 
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+SALARY                                                                          
+------------------------------------------------------------                    
+FORD                                                                            
+$$$$$$$$$$$3000                                                                 
+                                                                                
+MILLER                                                                          
+$$$$$$$$$$$1300                                                                 
+                                                                                
+
+14 rows selected.
+
+SQL> SELECT ENAME,
+  2         HIREDATE,
+  3         NEXT_DAY(ADD_MONTHS(HIREDATE,6),'MONDAY') AS REVIEW
+  4  FROM EMPLOYEE2;
+
+ENAME                                              HIREDATE  REVIEW             
+-------------------------------------------------- --------- ---------          
+SMITH                                              17-DEC-80 22-JUN-81          
+ALLEN                                              20-FEB-81 24-AUG-81          
+WARD                                               22-FEB-81 24-AUG-81          
+JONES                                              02-APR-81 05-OCT-81          
+MARTIN                                             28-SEP-81 29-MAR-82          
+BLAKE                                              01-MAY-81 02-NOV-81          
+CLARK                                              09-JUN-81 14-DEC-81          
+SCOTT                                              19-APR-87 26-OCT-87          
+KING                                               17-NOV-81 24-MAY-82          
+TURNER                                             08-SEP-81 15-MAR-82          
+ADAMS                                              23-MAY-87 30-NOV-87          
+
+ENAME                                              HIREDATE  REVIEW             
+-------------------------------------------------- --------- ---------          
+JAMES                                              03-DEC-81 07-JUN-82          
+FORD                                               03-DEC-81 07-JUN-82          
+MILLER                                             23-JAN-82 26-JUL-82          
+
+14 rows selected.
+
+SQL> SELECT ENAME,
+  2         HIREDATE,
+  3         TO_CHAR(HIREDATE,'DAY') AS DAY
+  4  FROM EMPLOYEE2
+  5  ORDER BY TO_CHAR(HIREDATE,'D');
+
+ENAME                                              HIREDATE                     
+-------------------------------------------------- ---------                    
+DAY                                                                             
+------------------------------------                                            
+SCOTT                                              19-APR-87                    
+SUNDAY                                                                          
+                                                                                
+WARD                                               22-FEB-81                    
+SUNDAY                                                                          
+                                                                                
+MARTIN                                             28-SEP-81                    
+MONDAY                                                                          
+                                                                                
+
+ENAME                                              HIREDATE                     
+-------------------------------------------------- ---------                    
+DAY                                                                             
+------------------------------------                                            
+CLARK                                              09-JUN-81                    
+TUESDAY                                                                         
+                                                                                
+TURNER                                             08-SEP-81                    
+TUESDAY                                                                         
+                                                                                
+KING                                               17-NOV-81                    
+TUESDAY                                                                         
+                                                                                
+
+ENAME                                              HIREDATE                     
+-------------------------------------------------- ---------                    
+DAY                                                                             
+------------------------------------                                            
+SMITH                                              17-DEC-80                    
+WEDNESDAY                                                                       
+                                                                                
+JAMES                                              03-DEC-81                    
+THURSDAY                                                                        
+                                                                                
+FORD                                               03-DEC-81                    
+THURSDAY                                                                        
+                                                                                
+
+ENAME                                              HIREDATE                     
+-------------------------------------------------- ---------                    
+DAY                                                                             
+------------------------------------                                            
+JONES                                              02-APR-81                    
+THURSDAY                                                                        
+                                                                                
+BLAKE                                              01-MAY-81                    
+FRIDAY                                                                          
+                                                                                
+ALLEN                                              20-FEB-81                    
+FRIDAY                                                                          
+                                                                                
+
+ENAME                                              HIREDATE                     
+-------------------------------------------------- ---------                    
+DAY                                                                             
+------------------------------------                                            
+MILLER                                             23-JAN-82                    
+SATURDAY                                                                        
+                                                                                
+ADAMS                                              23-MAY-87                    
+SATURDAY                                                                        
+                                                                                
+
+14 rows selected.
+
+SQL> SELECT ENAME,
+  2         NVL(TO_CHAR(COMM),'No Commission') AS COMM
+  3  FROM EMPLOYEE2;
+
+ENAME                                                                           
+--------------------------------------------------                              
+COMM                                                                            
+----------------------------------------                                        
+SMITH                                                                           
+No Commission                                                                   
+                                                                                
+ALLEN                                                                           
+300                                                                             
+                                                                                
+WARD                                                                            
+500                                                                             
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+COMM                                                                            
+----------------------------------------                                        
+JONES                                                                           
+No Commission                                                                   
+                                                                                
+MARTIN                                                                          
+1400                                                                            
+                                                                                
+BLAKE                                                                           
+No Commission                                                                   
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+COMM                                                                            
+----------------------------------------                                        
+CLARK                                                                           
+No Commission                                                                   
+                                                                                
+SCOTT                                                                           
+No Commission                                                                   
+                                                                                
+KING                                                                            
+No Commission                                                                   
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+COMM                                                                            
+----------------------------------------                                        
+TURNER                                                                          
+0                                                                               
+                                                                                
+ADAMS                                                                           
+No Commission                                                                   
+                                                                                
+JAMES                                                                           
+No Commission                                                                   
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+COMM                                                                            
+----------------------------------------                                        
+FORD                                                                            
+No Commission                                                                   
+                                                                                
+MILLER                                                                          
+No Commission                                                                   
+                                                                                
+
+14 rows selected.
+
+SQL> SELECT SUBSTR(ENAME,1,8) || ' ' ||
+  2         RPAD('*',TRUNC(SAL/1000),'*') AS EMPLOYEES_AND_THEIR_SALARIES
+  3  FROM EMPLOYEE2
+  4  ORDER BY SAL DESC;
+
+EMPLOYEES_AND_THEIR_SALARIES                                                    
+--------------------------------------------------------------------------------
+KING *****                                                                      
+FORD ***                                                                        
+SCOTT ***                                                                       
+JONES **                                                                        
+BLAKE **                                                                        
+CLARK **                                                                        
+ALLEN *                                                                         
+TURNER *                                                                        
+MILLER *                                                                        
+WARD *                                                                          
+MARTIN *                                                                        
+
+EMPLOYEES_AND_THEIR_SALARIES                                                    
+--------------------------------------------------------------------------------
+ADAMS *                                                                         
+JAMES                                                                           
+SMITH                                                                           
+
+14 rows selected.
+
+SQL> SELECT ENAME,
+  2         JOB,
+  3         CASE JOB
+  4              WHEN 'PRESIDENT' THEN 'A'
+  5              WHEN 'MANAGER' THEN 'B'
+  6              WHEN 'SALESMAN' THEN 'C'
+  7              WHEN 'CLERK' THEN 'D'
+  8              ELSE 'E'
+  9         END AS Grade
+ 10  FROM EMPLOYEE2;
+
+ENAME                                                                           
+--------------------------------------------------                              
+JOB                            G                                                
+------------------------------ -                                                
+SMITH                                                                           
+CLERK                          D                                                
+                                                                                
+ALLEN                                                                           
+SALESMAN                       C                                                
+                                                                                
+WARD                                                                            
+SALESMAN                       C                                                
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+JOB                            G                                                
+------------------------------ -                                                
+JONES                                                                           
+MANAGER                        B                                                
+                                                                                
+MARTIN                                                                          
+SALESMAN                       C                                                
+                                                                                
+BLAKE                                                                           
+MANAGER                        B                                                
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+JOB                            G                                                
+------------------------------ -                                                
+CLARK                                                                           
+MANAGER                        B                                                
+                                                                                
+SCOTT                                                                           
+ANALYST                        E                                                
+                                                                                
+KING                                                                            
+PRESIDENT                      A                                                
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+JOB                            G                                                
+------------------------------ -                                                
+TURNER                                                                          
+SALESMAN                       C                                                
+                                                                                
+ADAMS                                                                           
+CLERK                          D                                                
+                                                                                
+JAMES                                                                           
+CLERK                          D                                                
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+JOB                            G                                                
+------------------------------ -                                                
+FORD                                                                            
+ANALYST                        E                                                
+                                                                                
+MILLER                                                                          
+CLERK                          D                                                
+                                                                                
+
+14 rows selected.
+
+SQL> SELECT ENAME,
+  2         JOB,
+  3         CASE
+  4              WHEN JOB='PRESIDENT' THEN 'A'
+  5              WHEN JOB='MANAGER' THEN 'B'
+  6              WHEN JOB='SALESMAN' THEN 'C'
+  7              WHEN JOB='CLERK' THEN 'D'
+  8              ELSE 'E'
+  9         END AS Grade
+ 10  FROM EMPLOYEE2;
+
+ENAME                                                                           
+--------------------------------------------------                              
+JOB                            G                                                
+------------------------------ -                                                
+SMITH                                                                           
+CLERK                          D                                                
+                                                                                
+ALLEN                                                                           
+SALESMAN                       C                                                
+                                                                                
+WARD                                                                            
+SALESMAN                       C                                                
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+JOB                            G                                                
+------------------------------ -                                                
+JONES                                                                           
+MANAGER                        B                                                
+                                                                                
+MARTIN                                                                          
+SALESMAN                       C                                                
+                                                                                
+BLAKE                                                                           
+MANAGER                        B                                                
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+JOB                            G                                                
+------------------------------ -                                                
+CLARK                                                                           
+MANAGER                        B                                                
+                                                                                
+SCOTT                                                                           
+ANALYST                        E                                                
+                                                                                
+KING                                                                            
+PRESIDENT                      A                                                
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+JOB                            G                                                
+------------------------------ -                                                
+TURNER                                                                          
+SALESMAN                       C                                                
+                                                                                
+ADAMS                                                                           
+CLERK                          D                                                
+                                                                                
+JAMES                                                                           
+CLERK                          D                                                
+                                                                                
+
+ENAME                                                                           
+--------------------------------------------------                              
+JOB                            G                                                
+------------------------------ -                                                
+FORD                                                                            
+ANALYST                        E                                                
+                                                                                
+MILLER                                                                          
+CLERK                          D                                                
+                                                                                
+
+14 rows selected.
+
+SQL> SPOOL OFF
