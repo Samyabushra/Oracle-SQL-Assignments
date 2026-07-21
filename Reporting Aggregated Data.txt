@@ -1,0 +1,89 @@
+SQL> SELECT MAX(SAL) AS Maximum,
+  2         MIN(SAL) AS Minimum,
+  3         SUM(SAL) AS Total_Salary,
+  4         AVG(SAL) AS Average_Salary
+  5  FROM EMPLOYEE2;
+
+   MAXIMUM    MINIMUM TOTAL_SALARY AVERAGE_SALARY                               
+---------- ---------- ------------ --------------                               
+      5000        800        29025     2073.21429                               
+
+SQL> SELECT ROUND(MAX(SAL),0) AS Maximum,
+  2         ROUND(MIN(SAL),0) AS Minimum,
+  3         ROUND(SUM(SAL),0) AS Total_Salary,
+  4         ROUND(AVG(SAL),0) AS Average_Salary
+  5  FROM EMPLOYEE2;
+
+   MAXIMUM    MINIMUM TOTAL_SALARY AVERAGE_SALARY                               
+---------- ---------- ------------ --------------                               
+      5000        800        29025           2073                               
+
+SQL> SELECT JOB,
+  2         MIN(SAL) AS Minimum,
+  3         MAX(SAL) AS Maximum,
+  4         SUM(SAL) AS Total_Salary,
+  5         ROUND(AVG(SAL),0) AS Average_Salary
+  6  FROM EMPLOYEE2
+  7  GROUP BY JOB;
+
+JOB                               MINIMUM    MAXIMUM TOTAL_SALARY AVERAGE_SALARY
+------------------------------ ---------- ---------- ------------ --------------
+CLERK                                 800       1300         4150           1038
+SALESMAN                             1250       1600         5600           1400
+MANAGER                              2450       2975         8275           2758
+ANALYST                              3000       3000         6000           3000
+PRESIDENT                            5000       5000         5000           5000
+
+SQL> SELECT JOB,
+  2         COUNT(*) AS Number_of_Employees
+  3  FROM EMPLOYEE2
+  4  GROUP BY JOB;
+
+JOB                            NUMBER_OF_EMPLOYEES                              
+------------------------------ -------------------                              
+CLERK                                            4                              
+SALESMAN                                         4                              
+MANAGER                                          3                              
+ANALYST                                          2                              
+PRESIDENT                                        1                              
+
+SQL> SELECT COUNT(DISTINCT MGR) AS "Number of Managers"
+  2  FROM EMPLOYEE2
+  3  WHERE MGR IS NOT NULL;
+
+Number of Managers                                                              
+------------------                                                              
+                 6                                                              
+
+SQL> SELECT MAX(SAL) - MIN(SAL) AS DIFFERENCE
+  2  FROM EMPLOYEE2;
+
+DIFFERENCE                                                                      
+----------                                                                      
+      4200                                                                      
+
+SQL> SELECT MGR AS Manager_Number,
+  2         MIN(SAL) AS Lowest_Salary
+  3  FROM EMPLOYEE2
+  4  WHERE MGR IS NOT NULL
+  5  GROUP BY MGR
+  6  HAVING MIN(SAL) > 2000
+  7  ORDER BY Lowest_Salary DESC;
+
+MANAGER_NUMBER LOWEST_SALARY                                                    
+-------------- -------------                                                    
+          7566          3000                                                    
+          7839          2450                                                    
+
+SQL> SELECT
+  2      (SELECT COUNT(*) FROM EMPLOYEE2) AS Total_Employees,
+  3      (SELECT COUNT(*) FROM EMPLOYEE2 WHERE TO_CHAR(HIREDATE,'YYYY')='1980') AS Hired_1980,
+  4      (SELECT COUNT(*) FROM EMPLOYEE2 WHERE TO_CHAR(HIREDATE,'YYYY')='1981') AS Hired_1981,
+  5      (SELECT COUNT(*) FROM EMPLOYEE2 WHERE TO_CHAR(HIREDATE,'YYYY')='1982') AS Hired_1982
+  6  FROM DUAL;
+
+TOTAL_EMPLOYEES HIRED_1980 HIRED_1981 HIRED_1982                                
+--------------- ---------- ---------- ----------                                
+             14          1         10          1                                
+
+SQL> SPOOL OFF
