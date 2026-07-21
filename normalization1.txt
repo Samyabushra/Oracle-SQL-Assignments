@@ -1,0 +1,113 @@
+SQL> 
+SQL> @C:\Users\Hp\OneDrive\Documents\Oracle\normalization1.sql
+SQL> CREATE TABLE EMPLOYEE (
+  2  	 EMPNO INT PRIMARY KEY,
+  3  	 ENAME VARCHAR(50),
+  4  	 SAL DECIMAL(10,2),
+  5  	 DEPTNO INT,
+  6  	 DNAME VARCHAR(50),
+  7  	 LOC VARCHAR(50)
+  8  );
+CREATE TABLE EMPLOYEE (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> 
+SQL> INSERT INTO EMPLOYEE VALUES
+  2  (101,'John',50000,10,'Sales','New York'),
+  3  (102,'Alice',60000,20,'HR','Chicago'),
+  4  (103,'Bob',55000,10,'Sales','New York'),
+  5  (104,'David',70000,30,'IT','Dallas');
+(101,'John',50000,10,'Sales','New York'),
+                                        *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> 
+SQL> SELECT * FROM EMPLOYEE;
+
+     EMPNO ENAME                                                     SAL     DEPTNO DNAME                                              LOC                                                              
+---------- -------------------------------------------------- ---------- ---------- -------------------------------------------------- --------------------------------------------------               
+       101 John                                                    50000         10 Sales                                              New York                                                         
+       102 Alice                                                   60000         20 HR                                                 Chicago                                                          
+       103 Bob                                                     55000         10 Sales                                              New York                                                         
+       104 David                                                   70000         30 IT                                                 Dallas                                                           
+
+4 rows selected.
+
+SQL> 
+SQL> CREATE TABLE DEPARTMENT (
+  2  	 DEPTNO INT PRIMARY KEY,
+  3  	 DNAME VARCHAR(50),
+  4  	 LOC VARCHAR(50)
+  5  );
+CREATE TABLE DEPARTMENT (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> INSERT INTO DEPARTMENT VALUES
+  2  (10,'Sales','New York'),
+  3  (20,'HR','Chicago'),
+  4  (30,'IT','Dallas');
+(10,'Sales','New York'),
+                       *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> 
+SQL> SELECT * FROM DEPARTMENT;
+
+    DEPTNO DNAME                                              LOC                                                                                                                                       
+---------- -------------------------------------------------- --------------------------------------------------                                                                                        
+        10 Sales                                              New York                                                                                                                                  
+        20 HR                                                 Chicago                                                                                                                                   
+        30 IT                                                 Dallas                                                                                                                                    
+
+3 rows selected.
+
+SQL> 
+SQL> CREATE TABLE EMPLOYEE_NEW (
+  2  	 EMPNO INT PRIMARY KEY,
+  3  	 ENAME VARCHAR(50),
+  4  	 SAL DECIMAL(10,2),
+  5  	 DEPTNO INT,
+  6  	 FOREIGN KEY (DEPTNO) REFERENCES DEPARTMENT(DEPTNO)
+  7  );
+CREATE TABLE EMPLOYEE_NEW (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> 
+SQL> INSERT INTO EMPLOYEE_NEW VALUES
+  2  (101,'John',50000,10),
+  3  (102,'Alice',60000,20),
+  4  (103,'Bob',55000,10),
+  5  (104,'David',70000,30);
+(101,'John',50000,10),
+                     *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> 
+SQL> SELECT * FROM EMPLOYEE_NEW;
+
+     EMPNO ENAME                                                     SAL     DEPTNO                                                                                                                     
+---------- -------------------------------------------------- ---------- ----------                                                                                                                     
+       101 John                                                    50000         10                                                                                                                     
+       102 Alice                                                   60000         20                                                                                                                     
+       103 Bob                                                     55000         10                                                                                                                     
+       104 David                                                   70000         30                                                                                                                     
+
+4 rows selected.
+
+SQL> 
+SQL> SPOOL OFF
